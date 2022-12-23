@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="sidebar-wrapper" style="background-image: url('{% static 'back/img/faces/bg2.png' %}');">
+    <div class="user">
+        <div class="photo">
+            <img src="{% static 'back/img/faces/sandy.jpg' %}" />
+        </div>
+        <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <span>
+                    {{user}}
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <ul class="nav">
+        <li>
+            <a href="{% url 'tabel_artikel' %}">
+                <i class="ti-view-list-alt"></i>
+                <p>Tabel Artikel</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'tabel_users' %}">
+                <i class="ti-calendar"></i>
+                <p>Tabel Users</p>
+            </a>
+        </li>
+    </ul>
+</div>

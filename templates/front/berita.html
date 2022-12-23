@@ -1,0 +1,55 @@
+{% extends 'front/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="parallax filter-black">
+        <div class="parallax-image">
+            <img src="{% static 'front/img/14.jpeg' %}" alt="..." />
+        </div>
+        <div class="small-info">
+            <h2>“Seni Dalam Berita”</h2>
+            <h3>(Seni bukanlah apa yang kamu lihat, tapi apa yang kamu buat orang lain melihat)</h3>
+        </div>
+    </div>
+
+    <div class="bg-success p-2 text-dark bg-opacity-10">
+    <div class="section">
+           <div class="container">
+               <h2 class="section-title">Seni Tekhcologi</h2>
+               <div class="row">
+                {% for title, desc, nama, tanggal, link,conten, i in mylist%}
+                    <div class="col-md-12">
+                        <div class="card card-plain">
+                            <div class="image">
+                                <img style="width: 98em;" src={{i}} alt="..." />
+                                <div class="filter filter-white">
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p class="category">{{title}}</p>
+                                <a class="card-link" href={{link}}>
+                                    <h4 class="title">{{desc}}</h4>
+                                </a>
+                                 <div class="footer">
+                                    <div class="author">
+                                        <a class="card-link" href="#">
+                                           <img src={{i}} alt="..." class="avatar">
+                                           <span> {{nama}} </span>
+                                        </a>
+                                    </div>
+                                    <div class="stats pull-right">
+                                        <i>{{tanggal}}</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end card -->
+                    </div>
+                {% endfor %}
+               </div>
+           </div>
+    </div><!-- section -->
+    </div>
+</div>
+{% endblock content %}
