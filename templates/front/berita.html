@@ -19,28 +19,28 @@
            <div class="container">
                <h2 class="section-title">Seni Tekhcologi</h2>
                <div class="row">
-                {% for title, desc, nama, tanggal, link,conten, i in mylist%}
+                {% for a in berita%}
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="image">
-                                <img style="width: 98em;" src={{i}} alt="..." />
+                                <img style="width: 98em;" src={{a.img}} alt="..." />
                                 <div class="filter filter-white">
                                 </div>
                             </div>
                             <div class="content">
-                                <p class="category">{{title}}</p>
-                                <a class="card-link" href={{link}}>
-                                    <h4 class="title">{{desc}}</h4>
+                                <p class="category">{{a.title}}</p>
+                                <a class="card-link" href={{a.link}}>
+                                    <h4 class="title">{{a.desc}}</h4>
                                 </a>
                                  <div class="footer">
                                     <div class="author">
                                         <a class="card-link" href="#">
-                                           <img src={{i}} alt="..." class="avatar">
-                                           <span> {{nama}} </span>
+                                           <img src={{a.img}} alt="..." class="avatar">
+                                           <span> {{a.nama}} </span>
                                         </a>
                                     </div>
                                     <div class="stats pull-right">
-                                        <i>{{tanggal}}</i>
+                                        <i>{{a.tanggal}}</i>
                                     </div>
                                 </div>
                             </div>

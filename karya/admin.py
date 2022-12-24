@@ -6,3 +6,7 @@ class ArtikelAdmin(admin.ModelAdmin):
 
 admin.site.register(Kategori)
 admin.site.register(Artikel, ArtikelAdmin)
+
+class BeritaAdmin(admin.ModelAdmin):
+     list_display = ('nama','title','desc','tanggal','link','conten','img')
+admin.site.register(Berita,BeritaAdmin)

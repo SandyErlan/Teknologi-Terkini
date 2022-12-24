@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.db import  transaction
 from django.contrib.auth.hashers import make_password
 
-from karya.models import Artikel
+from karya.models import Artikel, Berita
 from users.models import Biodata
 import requests
 
@@ -58,34 +58,44 @@ def artikel(request):
 #     }
 #     return render(request, template_name, context)
 
-def berita(request):
-    url = "https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=3d511487debd4bbdb9cbdf6c824eae35"
+# def berita(request):
+#     url = "https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=3d511487debd4bbdb9cbdf6c824eae35"
     
-    data = requests.get(url).json()
+#     data = requests.get(url).json()
 
-    a = data['articles']
-    nama = []
-    title = []
-    desc = []
-    tanggal = []
-    link = []
-    conten = []
-    img = []
+#     a = data['articles']
+#     nama = []
+#     title = []
+#     desc = []
+#     tanggal = []
+#     link = []
+#     conten = []
+#     img = []
 
-    for i in range(len(a)):
-        f = a[i]
-        nama.append(f['author'])
-        title.append(f['title'])
-        desc.append(f['description'])
-        tanggal.append(f['publishedAt'])
-        link.append(f['url'])
-        conten.append(f['content'])
-        img.append(f['urlToImage'])
+#     for i in range(len(a)):
+#         f = a[i]
+#         nama.append(f['author'])
+#         title.append(f['title'])
+#         desc.append(f['description'])
+#         tanggal.append(f['publishedAt'])
+#         link.append(f['url'])
+#         conten.append(f['content'])
+#         img.append(f['urlToImage'])
 
-    mylist = zip(title, desc, nama, tanggal,link,conten, img)
-    context ={'mylist':mylist}
+#     mylist = zip(title, desc, nama, tanggal,link,conten, img)
+#     context ={'mylist':mylist}
 
-    return render(request, 'front/berita.html', context)
+#     return render(request, 'front/berita.html', context)
+
+def berita(request):
+    template_name = "front/berita.html"
+    berita = Berita.objects.all()
+    # print(artikel)
+    context = {
+        'title' : 'Berita',
+        'berita': berita,
+    }
+    return render(request, template_name, context)
 
 def login(request):
     template_name = 'account/login.html'

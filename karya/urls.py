@@ -9,4 +9,6 @@ urlpatterns = [
     path('artikel/edit/<str:id>',edit_artikel, name='edit_artikel'),
     path('artikel/hapus/<str:id>',hapus_artikel, name='hapus_artikel'),
     path('users/',users, name='tabel_users'),
+    path('berita/',berita, name='tabel_berita'),
+    path('sinkron_berita/',sinkron_berita, name='sinkron_berita'),
 ]

@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from multiprocessing import context
-from .models import Artikel, Kategori
+from .models import Artikel, Kategori, Berita
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
+import requests
 
 def is_seniman(user):
     if user.groups.filter(name='Seniman').exists():
@@ -21,6 +22,15 @@ def dashboard(request):
     }
     return render(request, template_name, context)
 
+def berita(request):
+    template_name = "back/tabel_berita.html"
+    berita = Berita.objects.all()
+    # print(artikel)
+    context = {
+        'title' : 'dashboard',
+        'berita': berita,
+    }
+    return render(request, template_name, context)
 
 @login_required
 @user_passes_test(is_seniman)
@@ -116,3 +126,25 @@ def users(request):
     }
     return render(request, template_name, context)
 
+def sinkron_berita(request):
+	url = "https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=3d511487debd4bbdb9cbdf6c824eae35"
+	data = requests.get(url).json()
+	for d in data['articles']:
+		cek_berita = Berita.objects.filter(nama=d['author'])
+		if cek_berita:
+			print('data sudah ada')
+			c = cek_berita.first()
+			c.nama=d['author']
+			c.save()
+		else: 
+      		#jika belum ada maka tulis baru kedatabase
+			b = Berita.objects.create(
+				nama = d['author'],
+				title = d['title'],
+				desc = d['description'],
+				tanggal = d['publishedAt'],
+				link = d['url'],
+                conten = d['content'],
+				img = d['urlToImage'],
+			)
+	return redirect(berita)

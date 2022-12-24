@@ -23,5 +23,16 @@ class Artikel(models.Model):
         return "{} - {}".format(self.nama, self.deskripsi)
     
     class Meta:
-        verbose_name_plural = "Artikel"
+        verbose_name_plural = "Artikel" 
+
+class Berita(models.Model):
+    nama = models.CharField(max_length=100, blank=True, null=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    desc = models.TextField(max_length=100, blank=True, null=True)
+    tanggal = models.CharField(max_length=100)
+    link = models.CharField(max_length=100, blank=True, null=True)
+    conten = models.TextField(blank=True, null=True)
+    img = models.CharField(max_length=100, blank=True, null=True)
     
+    def _str_(self):
+        return "{} . {}".format(self.nama, self.title)    
